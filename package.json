@@ -22,7 +22,6 @@
     "clsx": "^2.1.0",
     "eslint": "8.49.0",
     "eslint-config-next": "13.5.1",
-    "fs": "^0.0.1-security",
     "lucide-react": "^0.354.0",
     "next": "13.5.1",
     "postcss": "8.4.30",
