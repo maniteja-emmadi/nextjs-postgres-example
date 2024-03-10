@@ -1,6 +1,12 @@
-import React from 'react';
+import BookForm from "@/components/shared/BookForm";
 
 const Page = () => {
-  return <div>Book</div>;
+	return (
+		<div className={"user"}>
+			<div className="form">
+				<BookForm />
+			</div>
+		</div>
+	);
 };
 export default Page;
