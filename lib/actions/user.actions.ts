@@ -23,7 +23,7 @@ export const addUser = async (values: {
 			await sql`SELECT * FROM Users WHERE email = ${values.email};`;
 
 		try {
-			if (existingUser?.length > 0) {
+			if (existingUser?.rows.length > 0) {
 				return NextResponse.json(
 					{
 						error: "User already exists",
