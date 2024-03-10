@@ -21,7 +21,8 @@ async function createUserTable() {
       username VARCHAR(255) NOT NULL UNIQUE,
       email VARCHAR(255) NOT NULL UNIQUE,
       password VARCHAR(255) NOT NULL,
-      id SERIAL PRIMARY KEY
+      id SERIAL PRIMARY KEY,
+      createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   );`;
 		return { message: "User table created" };
 	} catch (error) {
