@@ -1,5 +1,4 @@
 import { sql } from "@vercel/postgres";
-import { User } from "../database/models/user.model";
 import { NextResponse } from "next/server";
 
 const createUserTable = async () => {
