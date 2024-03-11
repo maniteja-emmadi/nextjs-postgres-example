@@ -7,7 +7,7 @@ export const addUser = async (values: {
 }) => {
 	try {
 		const result = await fetch(
-			`${process.env.NEXT_PUBLIC_SERVER_URL}/user/add`,
+			`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/add`,
 			{
 				method: "POST",
 				headers: {
@@ -19,6 +19,6 @@ export const addUser = async (values: {
 
 		return JSON.parse(JSON.stringify(result));
 	} catch (e) {
-		console.log(e);
+		return JSON.parse(JSON.stringify(e));
 	}
 };
