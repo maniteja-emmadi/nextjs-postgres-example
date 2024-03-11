@@ -54,7 +54,7 @@ export async function POST(request: Request) {
 					await sql`INSERT INTO Users (firstName, lastName, username, email, password) VALUES (${values.firstName}, ${values.lastName}, ${values.username}, ${values.email}, ${values.password});`;
 
 				return NextResponse.json({ result }, { status: 200 });
-			} catch (error) {
+			} catch (error: any) {
 				if (error?.code === "23505") {
 					return NextResponse.json(
 						{
