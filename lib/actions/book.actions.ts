@@ -21,3 +21,15 @@ export const addBook = async (values: {
 		return JSON.parse(JSON.stringify(e));
 	}
 };
+
+export const getAllBooks = async () => {
+	try {
+		const response = await fetch(
+			`${process.env.NEXT_PUBLIC_SERVER_URL}/api/book`
+		).then((res) => res.json());
+
+		return response;
+	} catch (e) {
+		return JSON.parse(JSON.stringify(e));
+	}
+};

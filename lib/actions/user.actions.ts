@@ -22,3 +22,15 @@ export const addUser = async (values: {
 		return JSON.parse(JSON.stringify(e));
 	}
 };
+
+export const getAllUsers = async () => {
+	try {
+		const result = await fetch(
+			`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user`
+		).then((res) => res.json());
+
+		return JSON.parse(JSON.stringify(result));
+	} catch (e) {
+		return JSON.parse(JSON.stringify(e));
+	}
+};
