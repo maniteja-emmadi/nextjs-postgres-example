@@ -5,16 +5,13 @@ export const addBook = async (values: {
 	author: string;
 }) => {
 	try {
-		const response = await fetch(
-			`${process.env.NEXT_PUBLIC_SERVER_URL}/api/book/add`,
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(values),
-			}
-		).then((res) => res.json());
+		const response = await fetch(`/api/book/add`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(values),
+		}).then((res) => res.json());
 
 		return response;
 	} catch (e) {
@@ -24,9 +21,7 @@ export const addBook = async (values: {
 
 export const getAllBooks = async () => {
 	try {
-		const response = await fetch(
-			`${process.env.NEXT_PUBLIC_SERVER_URL}/api/book`
-		).then((res) => res.json());
+		const response = await fetch(`/api/book`).then((res) => res.json());
 
 		return response;
 	} catch (e) {

@@ -6,16 +6,13 @@ export const addUser = async (values: {
 	password: string;
 }) => {
 	try {
-		const result = await fetch(
-			`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user/add`,
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(values),
-			}
-		).then((res) => res.json());
+		const result = await fetch(`/api/user/add`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(values),
+		}).then((res) => res.json());
 
 		return JSON.parse(JSON.stringify(result));
 	} catch (e) {
@@ -25,9 +22,7 @@ export const addUser = async (values: {
 
 export const getAllUsers = async () => {
 	try {
-		const result = await fetch(
-			`${process.env.NEXT_PUBLIC_SERVER_URL}/api/user`
-		).then((res) => res.json());
+		const result = await fetch(`/api/user`).then((res) => res.json());
 
 		return JSON.parse(JSON.stringify(result));
 	} catch (e) {
