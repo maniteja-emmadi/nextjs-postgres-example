@@ -26,7 +26,7 @@ const Header = () => {
 								<ul className="header-nav_elements">
 									<li className={` p-18 flex whitespace-nowrap text-dark-700`}>
 										<Link
-											href={"/add/user"}
+											href={"/user/add"}
 											className="sidebar-link cursor-pointer"
 										>
 											Add User
@@ -34,7 +34,7 @@ const Header = () => {
 									</li>
 									<li className={` p-18 flex whitespace-nowrap text-dark-700`}>
 										<Link
-											href={"/add/book"}
+											href={"/book/add"}
 											className="sidebar-link cursor-pointer"
 										>
 											Add Book
