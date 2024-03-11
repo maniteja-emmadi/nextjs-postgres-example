@@ -19,11 +19,13 @@ import {
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[];
 	data: TData[];
+	title?: string;
 }
 
 export function DataTable<TData, TValue>({
 	columns,
 	data,
+	title,
 }: DataTableProps<TData, TValue>) {
 	const table = useReactTable({
 		data,
@@ -31,10 +33,21 @@ export function DataTable<TData, TValue>({
 		getCoreRowModel: getCoreRowModel(),
 	});
 
+	console.log(table.getHeaderGroups()[0].headers.length);
+
 	return (
 		<div className="rounded-md border">
 			<Table>
 				<TableHeader>
+					{title && (
+						<TableRow>
+							<TableHead
+								colSpan={table.getHeaderGroups()?.[0]?.headers?.length}
+							>
+								<div className="w-full flex justify-center">{title}</div>
+							</TableHead>
+						</TableRow>
+					)}
 					{table.getHeaderGroups().map((headerGroup) => (
 						<TableRow key={headerGroup.id}>
 							{headerGroup.headers.map((header) => {
