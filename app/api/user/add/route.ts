@@ -65,6 +65,15 @@ export async function POST(request: Request) {
 
 				return NextResponse.json({ result }, { status: 200 });
 			} catch (error) {
+				if (error?.code === "23505") {
+					return NextResponse.json(
+						{
+							error:
+								"Username's already taken. Please choose a different username",
+						},
+						{ status: 400 }
+					);
+				}
 				return NextResponse.json({ error }, { status: 500 });
 			}
 		} catch (e) {
