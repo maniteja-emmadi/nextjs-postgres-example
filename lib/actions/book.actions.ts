@@ -5,14 +5,19 @@ export const addBook = async (values: {
 	author: string;
 }) => {
 	try {
-		const response = fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/book/add`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(values),
-		});
+		const response = await fetch(
+			`${process.env.NEXT_PUBLIC_SERVER_URL}/api/book/add`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(values),
+			}
+		).then((res) => res.json());
+
+		return response;
 	} catch (e) {
-		console.log(e);
+		return JSON.parse(JSON.stringify(e));
 	}
 };
