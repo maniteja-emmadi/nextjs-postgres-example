@@ -33,8 +33,6 @@ export function DataTable<TData, TValue>({
 		getCoreRowModel: getCoreRowModel(),
 	});
 
-	console.log(table.getHeaderGroups()[0].headers.length);
-
 	return (
 		<div className="rounded-md border">
 			<Table>
