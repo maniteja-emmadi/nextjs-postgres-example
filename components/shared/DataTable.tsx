@@ -40,9 +40,10 @@ export function DataTable<TData, TValue>({
 					{title && (
 						<TableRow>
 							<TableHead
+								className="text-center text-lg"
 								colSpan={table.getHeaderGroups()?.[0]?.headers?.length}
 							>
-								<div className="w-full flex justify-center">{title}</div>
+								{title}
 							</TableHead>
 						</TableRow>
 					)}
