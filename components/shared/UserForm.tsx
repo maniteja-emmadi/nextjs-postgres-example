@@ -15,6 +15,7 @@ import { z } from "zod";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { addUser } from "@/lib/actions/user.actions";
+import { useToast } from "../ui/use-toast";
 
 export const formSchema = z
 	.object({
@@ -33,6 +34,7 @@ export const formSchema = z
 	});
 
 const UserForm = () => {
+	const { toast } = useToast();
 	const initialValues = {
 		firstName: "",
 		lastName: "",
@@ -51,7 +53,30 @@ const UserForm = () => {
 		setIsSubmitting(true);
 		console.log(data);
 
-		await addUser(data);
+		const response = await addUser(data);
+
+		console.log({ response });
+		if (!response?.error) {
+			toast({
+				title: "User added successfully",
+				description: `${data.firstName} ${
+					data.lastName ?? null
+				} added successfully to the database`,
+				duration: 4000,
+				className: "success-toast",
+			});
+		} else {
+			toast({
+				title: "Error",
+				description:
+					response?.error?.code ??
+					response?.error?.code ??
+					response?.error ??
+					"Unknown error",
+				duration: 4000,
+				className: "error-toast",
+			});
+		}
 
 		setIsSubmitting(false);
 	};
@@ -149,7 +174,11 @@ const UserForm = () => {
 						)}
 					/>
 					<div className="flex justify-center w-full">
-						<Button type="submit" className="capitalize">
+						<Button
+							type="submit"
+							className="capitalize"
+							disabled={isSubmitting}
+						>
 							Add User
 						</Button>
 					</div>
