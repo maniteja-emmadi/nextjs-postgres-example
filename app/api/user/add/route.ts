@@ -30,16 +30,6 @@ async function createUserTable() {
 	}
 }
 
-export async function GET() {
-	try {
-		const result = await sql`SELECT * FROM Users;`;
-
-		return NextResponse.json({ result }, { status: 200 });
-	} catch (e) {
-		return NextResponse.json({ error: e }, { status: 500 });
-	}
-}
-
 export async function POST(request: Request) {
 	try {
 		const values = await request.json();
