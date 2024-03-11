@@ -1,6 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import { addBook } from "@/lib/actions/book.actions";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Button } from "../ui/button";
 import {
 	Form,
 	FormControl,
@@ -9,13 +14,8 @@ import {
 	FormLabel,
 	FormMessage,
 } from "../ui/form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import { addUser } from "@/lib/actions/user.actions";
-import { addBook } from "@/lib/actions/book.actions";
+import { useToast } from "../ui/use-toast";
 
 export const formSchema = z.object({
 	name: z.string(),
@@ -25,6 +25,7 @@ export const formSchema = z.object({
 });
 
 const BookForm = () => {
+	const { toast } = useToast();
 	const initialValues = {
 		name: "",
 		title: "",
@@ -42,7 +43,28 @@ const BookForm = () => {
 		setIsSubmitting(true);
 		console.log(data);
 
-		await addBook(data);
+		const response: any = await addBook(data);
+
+		console.log(response);
+		if (!response?.error && response) {
+			toast({
+				title: "Book added successfully",
+				description: `${data.title} added successfully to the database`,
+				duration: 4000,
+				className: "success-toast",
+			});
+		} else {
+			toast({
+				title: "Error",
+				description:
+					response?.error?.code ??
+					response?.error?.code ??
+					response?.error ??
+					"Unknown error",
+				duration: 4000,
+				className: "error-toast",
+			});
+		}
 
 		setIsSubmitting(false);
 	};
